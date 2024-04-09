@@ -8,13 +8,9 @@ const stripe = new Stripe("sk_test_51OtaX0JA4oGedNG8rAzctAxCGtoZMKsCjmkTTYTZ3QG4
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors());
 
-// Configurar CORS
-app.use(cors({
-  origin: '*' // Esto permite solicitudes desde cualquier origen. Puedes ajustarlo según tus necesidades.
-}));
-
-app.post("/payment", async (req, res) => {
+app.post("/payment", cors(), async (req, res) => {
   const { amount, currency } = req.body;
 
   try {
@@ -25,7 +21,7 @@ app.post("/payment", async (req, res) => {
     );
     const paymentIntent = await stripe.paymentIntents.create({
       amount: amount,
-      currency: 'usd', // Cambiar a 'usd' si es necesario
+      currency: 'usd', // Change currency to 'usd'
       customer: customer.id,
       payment_method_types: ['card'],
     });
