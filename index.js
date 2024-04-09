@@ -1,14 +1,14 @@
 import express from "express";
 import Stripe from "stripe";
 import bodyParser from "body-parser";
-import cors from "cors";
+// import cors from "cors";
 
 const app = express();
 const stripe = new Stripe("sk_test_51OtaX0JA4oGedNG8rAzctAxCGtoZMKsCjmkTTYTZ3QG4nzZEpYL4029oQ4oHxTfQTzeRtZfUVgzGTW5CZv3uWqZh00NfpQg12i");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(cors());
+// app.use(cors());
 
 app.post("/payment", cors(), async (req, res) => {
   const { amount, currency } = req.body;
