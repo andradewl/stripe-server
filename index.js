@@ -11,7 +11,9 @@ app.use(bodyParser.json());
 
 // Configurar CORS
 app.use(cors({
-  origin: '*' // Esto permite solicitudes desde cualquier origen. Puedes ajustarlo según tus necesidades.
+  origin: '*', // Esto permite solicitudes desde cualquier origen. Puedes ajustarlo según tus necesidades.
+  methods: ['POST'], // Especifica los métodos permitidos
+  allowedHeaders: ['Content-Type'], // Especifica los encabezados permitidos
 }));
 
 app.post("/payment", async (req, res) => {
