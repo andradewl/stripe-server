@@ -26,7 +26,7 @@ app.post("/payment", async (req, res) => {
       { apiVersion: '2022-08-01' }
     );
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: amount,
+      amount: amount*100,
       currency: 'mxn', // Cambiar a 'usd' si es necesario
       customer: customer.id,
       payment_method_types: ['card'],
